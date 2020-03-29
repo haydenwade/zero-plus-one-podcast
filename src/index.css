@@ -1,6 +1,8 @@
 body{
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
+  background: url(banner.jpg);
+  background-size: 100%;
 }
 .link-icon {
   text-decoration: inherit;
@@ -9,4 +11,7 @@ body{
 }
 .center {
   text-align: center;
+}
+.content {
+  margin-top: 350px;
 }
