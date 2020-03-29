@@ -1,0 +1,12 @@
+body{
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.link-icon {
+  text-decoration: inherit;
+  color:inherit;
+  margin-right: 10px;
+}
+.center {
+  text-align: center;
+}
