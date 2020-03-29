@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import Footer from '../components/social-links'
+import SocialLinks from '../components/social-links'
 import HostedLinks from '../components/hosted-links';
 export default function HomePage() {
     return (
@@ -27,7 +27,7 @@ export default function HomePage() {
             </Row>
             <Row>
                 <Col className="center">
-                    <Footer />
+                    <SocialLinks />
                 </Col>
             </Row>
         </Container>
