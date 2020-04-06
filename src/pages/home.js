@@ -12,7 +12,7 @@ export default function HomePage() {
             </Row>
             <Row>
                 <Col className="center">
-                    We strive to bring you the most valuable insights into being a successful software engineer. Our host Hayden Wade has coded until his fingers were sore but most of all
+                    We strive to bring you the most valuable insights into being or becoming a successful software engineer. Our host Hayden Wade has coded until his fingers were sore but most of all
                     he enjoys mentoring aspiring engineers, speaking at Universities, and petting alpacas in his spare time.
                 </Col>
             </Row>
