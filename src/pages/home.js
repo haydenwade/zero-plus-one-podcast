@@ -1,17 +1,17 @@
 import React from 'react';
-import { Container, Row, Col, Image } from 'react-bootstrap';
-import Footer from '../components/social-links'
+import { Container, Row, Col } from 'react-bootstrap';
+import SocialLinks from '../components/social-links'
 import HostedLinks from '../components/hosted-links';
 export default function HomePage() {
     return (
-        <Container fluid>
+        <Container className='content'>
             <Row>
-                <Col>
-                    <Image src="https://images.pexels.com/photos/450035/pexels-photo-450035.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+                <Col className="center">
+                    <h1>Zero + One Podcast</h1>
                 </Col>
             </Row>
             <Row>
-                <Col>
+                <Col className="center">
                     We strive to bring you the most valuable insights into being or becoming a successful software engineer. Our host Hayden Wade has coded until his fingers were sore but most of all
                     he enjoys mentoring aspiring engineers, speaking at Universities, and petting alpacas in his spare time.
                 </Col>
@@ -27,7 +27,7 @@ export default function HomePage() {
             </Row>
             <Row>
                 <Col className="center">
-                    <Footer />
+                    <SocialLinks />
                 </Col>
             </Row>
         </Container>
