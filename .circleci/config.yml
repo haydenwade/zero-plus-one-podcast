@@ -23,15 +23,15 @@ jobs:
   #       key: built-app-{{checksum}}
   #       paths:
   #         - build  
-  build-docker-image-only:
-    executor:
-      name: docker/docker
-    steps:
-      - docker/publish:
-        cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
-        image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-        tag: latest
-        deploy: false
+  # build-docker-image-only:
+  #   executor:
+  #     name: docker/docker
+  #   steps:
+  #     - docker/publish:
+  #       cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
+  #       image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+  #       tag: latest
+  #       deploy: false
   # build-and-push-docker-image:
   #   executor: docker/docker
   #   steps:
@@ -55,7 +55,11 @@ workflows:
   hw-ci-cd:
     jobs:
       - install-test-build
-      - build-docker-image-only:
+      - docker/publish:
+        cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
+        image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+        tag: latest
+        deploy: false
         requires:
           - install-test-build
       # - node/test:
