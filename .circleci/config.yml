@@ -56,8 +56,8 @@ workflows:
     jobs:
       - install-test-build
       - build-docker-image-only:
-        requires:
-          - install-test-build
+         requires:
+           - install-test-build
       # - node/test:
       #   filters:
       #     branches:
