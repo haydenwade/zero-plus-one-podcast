@@ -3,6 +3,13 @@ orbs:
   node: circleci/node@2.0.1
   docker: circleci/docker@1.0.1
 jobs:
+  install-test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test
   install-test-build:
       executor:
         name: node/default
@@ -36,7 +43,14 @@ workflows:
   version: 2
   hw-ci-cd:
     jobs:
-      - install-test-build-cache
+      - install-test:
+          filters:
+            branches:
+              ignore: master
+      - install-test-build-cache:
+          filters:
+            branches:
+              only: master
       - build-docker-image-only:
          requires:
            - install-test-build-cache
