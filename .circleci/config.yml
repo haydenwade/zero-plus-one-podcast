@@ -7,9 +7,7 @@ jobs:
     executor:
       name: node/default
     steps:
-      - node/with-cache:
-        steps:
-          - run: npm run build
+      - run: npm run build
   # build-and-push-docker-image:
   #   executor: docker/docker
   #   steps:
