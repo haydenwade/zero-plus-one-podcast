@@ -6,7 +6,7 @@ jobs:
   build-and-push-docker-image:
     executor: docker/docker
     steps:
-      - node/test
+      # - node/test
       - setup_remote_docker
       - docker/check
       - docker/build:
