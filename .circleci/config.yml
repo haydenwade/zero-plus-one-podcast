@@ -32,32 +32,6 @@ jobs:
           keys: built-app
       - setup_remote_docker
       - run: docker build . -t my-first-image
-  build-docker-image-with-orb:
-    executor: docker/docker
-    steps:
-      - docker/publish:
-        cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
-        image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-        tag: latest
-        deploy: false
-  # build-and-push-docker-image:
-  #   executor: docker/docker
-  #   steps:
-  #     # - node/test
-  #     - checkout
-  #     - run: npm install
-  #     - run: npm test
-  #     - run: npm run build
-  #     - setup_remote_docker
-  #     - docker/check
-  #     - docker/build:
-  #         image: my_repo/orb-test
-      # - docker/push:
-      #     digest-path: /tmp/digest.txt
-      #     image: my_repo/orb-test
-      # - run:
-      #     command: |
-      #       echo "Digest is: $(</tmp/digest.txt)"
 workflows:
   version: 2
   hw-ci-cd:
@@ -66,6 +40,9 @@ workflows:
       - build-docker-image-with-orb:
          requires:
            - install-test-build-cache
+         filters:
+           branches:
+              only: master
       # - node/test:
       #   filters:
       #     branches:
