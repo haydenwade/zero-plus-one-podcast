@@ -33,12 +33,13 @@ jobs:
       - setup_remote_docker
       - run: docker build . -t my-first-image
   build-docker-image-with-orb:
-      steps:
-        - docker/publish:
-          cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-          tag: latest
-          deploy: false
+    executor: docker/docker
+    steps:
+      - docker/publish:
+        cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
+        image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+        tag: latest
+        deploy: false
   # build-and-push-docker-image:
   #   executor: docker/docker
   #   steps:
