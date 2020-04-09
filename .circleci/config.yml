@@ -20,7 +20,7 @@ jobs:
       - run: npm test
       - run: npm run build
       - save_cache:
-          key: built-app-{{checksum}}
+          key: built-app-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - build
             - Dockerfile
