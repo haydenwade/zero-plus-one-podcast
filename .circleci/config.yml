@@ -11,24 +11,25 @@ jobs:
         - run: npm install
         - run: npm test
         - run: npm run build
-  # install-test-build-cache:
-  #   executor:
-  #     name: node/default
-  #   steps:
-  #     - checkout
-  #     - run: npm install
-  #     - run: npm test
-  #     - run: npm run build
-  #     - save_cache:
-  #       key: built-app-{{checksum}}
-  #       paths:
-  #         - build  
+  install-test-build-cache:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test
+      - run: npm run build
+      - save_cache:
+          key: built-app-{{checksum}}
+          paths:
+            - build
+            - Dockerfile
   build-docker-image-only:
     executor:
       name: docker/docker
     steps:
       - restore_cache:
-          keys: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
+          keys: built-app
       - run: docker build . -t my-first-image
       # - docker/publish:
       #     cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
@@ -57,10 +58,10 @@ workflows:
   version: 2
   hw-ci-cd:
     jobs:
-      - install-test-build
+      - install-test-build-cache
       - build-docker-image-only:
          requires:
-           - install-test-build
+           - install-test-build-cache
       # - node/test:
       #   filters:
       #     branches:
