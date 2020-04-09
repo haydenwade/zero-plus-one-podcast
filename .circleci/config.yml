@@ -7,7 +7,9 @@ jobs:
     executor:
       name: node/default
     steps:
-      - checkout
+      - restore_cache:
+         keys:
+           - v1-npm-dps-
       - run: npm run build
   # build-and-push-docker-image:
   #   executor: docker/docker
@@ -27,6 +29,7 @@ workflows:
   version: 2
   hw-ci-cd:
     jobs:
+      - node/install-packages
       - node/test
       - build:
           requires:
