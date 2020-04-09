@@ -4,18 +4,23 @@ orbs:
   docker: circleci/docker@1.0.1
 jobs:
   install-test-build:
-    - node/with-cache:
+      executor:
+        name: node/default
       steps:
-        - run: npm install
-        - run: npm run test
-        - run: npm run build 
+        - checkout
+        - node/with-cache:
+            steps:
+              - run: npm install
+              - run: npm test
+              - run: npm run build
   build-docker-image-only:
-    jobs:
+    executor:
+      name: docker/docker
+    steps:
       - docker/publish:
-          cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-          tag: latest
-          deploy: false
+        cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
+        image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+        tag: latest
   # build-and-push-docker-image:
   #   executor: docker/docker
   #   steps:
