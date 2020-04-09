@@ -9,12 +9,16 @@ jobs:
           steps:
             - run: npm install
   test:
+    executor:
+      name: node/default
     steps:
       - run: npm test
   build-docker-image:
+    machine: true
     steps:
       - run: echo "built docker image"
   push-docker-image:
+    machine: true
     steps:
       - run: echo "pushed docker image to registry"
 workflows:
