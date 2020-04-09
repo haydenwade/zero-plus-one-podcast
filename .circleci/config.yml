@@ -29,7 +29,7 @@ workflows:
   version: 2
   hw-ci-cd:
     jobs:
-      - node/install-packages
+      # - node/install-packages
       - node/test
       - build:
           requires:
