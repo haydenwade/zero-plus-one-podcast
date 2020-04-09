@@ -24,10 +24,8 @@ workflows:
       - node/test:
         filters:
           branches:
-            ignore: 
-              - master
+            ignore: master
       - build-and-push-docker-image:
         filters:
           branches:
-            only: 
-              - master
+            only: master
