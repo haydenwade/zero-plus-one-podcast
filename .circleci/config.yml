@@ -7,24 +7,29 @@ jobs:
     executor: docker/docker
     steps:
       # - node/test
+      - node/with-cache:
+        steps:
+          - run: npm install
+          - run: npm test
+          - run: npm run build
       - setup_remote_docker
       - docker/check
       - docker/build:
           image: my_repo/orb-test
-      - docker/push:
-          digest-path: /tmp/digest.txt
-          image: my_repo/orb-test
-      - run:
-          command: |
-            echo "Digest is: $(</tmp/digest.txt)"
+      # - docker/push:
+      #     digest-path: /tmp/digest.txt
+      #     image: my_repo/orb-test
+      # - run:
+      #     command: |
+      #       echo "Digest is: $(</tmp/digest.txt)"
 workflows:
   version: 2
   hw-ci-cd:
     jobs:
-      - node/test:
-        filters:
-          branches:
-            ignore: master
+      # - node/test:
+      #   filters:
+      #     branches:
+      #       ignore: master
       - build-and-push-docker-image:
         filters:
           branches:
