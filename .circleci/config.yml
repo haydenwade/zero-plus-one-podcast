@@ -30,6 +30,7 @@ jobs:
     steps:
       - restore_cache:
           keys: built-app
+      - setup_remote_docker
       - run: docker build . -t my-first-image
       # - docker/publish:
       #     cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
