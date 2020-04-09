@@ -27,11 +27,14 @@ jobs:
     executor:
       name: docker/docker
     steps:
-      - docker/publish:
-          cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-          tag: latest
-          deploy: false
+      - restore_cache:
+          keys: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
+      - run: docker build . -t my-first-image
+      # - docker/publish:
+      #     cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
+      #     image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+      #     tag: latest
+      #     deploy: false
   # build-and-push-docker-image:
   #   executor: docker/docker
   #   steps:
