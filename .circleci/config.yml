@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  build-and-test:
+  install-and-test:
     executor:
       name: node/default
     steps:
@@ -11,28 +11,29 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
-  build-docker-image:
+  build:
+    - node/with-cache:
+      steps:
+        - run: npm run build
+  build-and-push-docker-image:
     machine: true
     steps:
       - run: echo "built docker image"
-  push-docker-image:
-    machine: true
-    steps:
       - run: echo "pushed docker image to registry"
 workflows:
-  version: 2
+  version: 2.1
   hw-ci-cd:
     jobs:
-      - build-and-test
-      - build-docker-image:
-          requires:
-            - build-and-test
-          filters:
+      - install-and-test
+      = build:
+        requires:
+          - install-and-test
+        filters:
             branches:
               only: master
-      - push-docker-image:
+      - build-and-push-docker-image:
           requires:
-            - build-docker-image
+            - build
           filters:
             branches:
               only: master
