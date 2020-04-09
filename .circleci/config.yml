@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1.6
+  node: circleci/node@2.0.1
+  docker: circleci/docker@1.0.1
 jobs:
   install-and-test:
     executor:
@@ -21,7 +22,7 @@ jobs:
       - run: echo "built docker image"
       - run: echo "pushed docker image to registry"
 workflows:
-  version: 2.1
+  version: 2
   hw-ci-cd:
     jobs:
       - install-and-test
