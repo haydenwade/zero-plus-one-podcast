@@ -1,38 +1,67 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1.6
+  node: circleci/node@2.0.1
+  docker: circleci/docker@1.0.1
 jobs:
-  build-and-test:
+  install-test:
     executor:
       name: node/default
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm test
-  build-docker-image:
-    machine: true
+      - run: npm install
+      - run: npm test
+  install-test-build:
+      executor:
+        name: node/default
+      steps:
+        - checkout
+        - run: npm install
+        - run: npm test
+        - run: npm run build
+  install-test-build-cache:
+    executor:
+      name: node/default
     steps:
-      - run: echo "built docker image"
-  push-docker-image:
-    machine: true
+      - checkout
+      - run: npm install
+      - run: npm test
+      - run: npm run build
+      - save_cache:
+          key: built-app-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - build
+            - Dockerfile
+  build-docker-image-only:
+    executor:
+      name: docker/docker
     steps:
-      - run: echo "pushed docker image to registry"
+      - restore_cache:
+          keys: built-app
+      - setup_remote_docker
+      - run: docker build . -t my-first-image
 workflows:
   version: 2
   hw-ci-cd:
     jobs:
-      - build-and-test
-      - build-docker-image:
-          requires:
-            - build-and-test
+      - install-test:
+          filters:
+            branches:
+              ignore: master
+      - install-test-build-cache:
           filters:
             branches:
               only: master
-      - push-docker-image:
-          requires:
-            - build-docker-image
-          filters:
-            branches:
+      - build-docker-image-only:
+         requires:
+           - install-test-build-cache
+         filters:
+           branches:
               only: master
+      # - node/test:
+      #   filters:
+      #     branches:
+      #       ignore: master
+      # - build-and-push-docker-image:
+      #   filters:
+      #     branches:
+      #       only: master
