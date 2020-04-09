@@ -3,43 +3,31 @@ orbs:
   node: circleci/node@2.0.1
   # docker: circleci/docker@1.0.1
 jobs:
-  build:
-    executor:
-      name: node/default
+  build-and-push-docker-image:
+    executor: docker/docker
     steps:
-      - restore_cache:
-         keys:
-           - v1-npm-dps-
-      - run: npm run build
-  # build-and-push-docker-image:
-  #   executor: docker/docker
-  #   steps:
-  #     - setup_remote_docker
-  #     - checkout
-  #     - docker/check
-  #     - docker/build:
-  #         image: my_repo/orb-test
-  #     - docker/push:
-  #         digest-path: /tmp/digest.txt
-  #         image: my_repo/orb-test
-  #     - run:
-  #         command: |
-  #           echo "Digest is: $(</tmp/digest.txt)"
+      - node/test
+      - setup_remote_docker
+      - docker/check
+      - docker/build:
+          image: my_repo/orb-test
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: my_repo/orb-test
+      - run:
+          command: |
+            echo "Digest is: $(</tmp/digest.txt)"
 workflows:
   version: 2
   hw-ci-cd:
     jobs:
-      # - node/install-packages
-      - node/test
-      - build:
-          requires:
-            - node/test
-          # filters:
-          #   branches:
-          #     only: master
-      # - build-and-push-docker-image:
-      #     requires:
-      #       - build
-          # filters:
-          #   branches:
-          #     only: master
+      - node/test:
+        filters:
+          branches:
+            ignore: 
+              - master
+      - build-and-push-docker-image:
+        filters:
+          branches:
+            only: 
+              - master
