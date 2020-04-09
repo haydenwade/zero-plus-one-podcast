@@ -25,7 +25,7 @@ workflows:
   hw-ci-cd:
     jobs:
       - install-and-test
-      = build:
+      - build:
         requires:
           - install-and-test
         filters:
