@@ -32,11 +32,13 @@ jobs:
           keys: built-app
       - setup_remote_docker
       - run: docker build . -t my-first-image
-      # - docker/publish:
-      #     cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
-      #     image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-      #     tag: latest
-      #     deploy: false
+  build-docker-image-with-orb:
+      steps:
+        - docker/publish:
+          cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          tag: latest
+          deploy: false
   # build-and-push-docker-image:
   #   executor: docker/docker
   #   steps:
@@ -60,7 +62,7 @@ workflows:
   hw-ci-cd:
     jobs:
       - install-test-build-cache
-      - build-docker-image-only:
+      - build-docker-image-with-orb:
          requires:
            - install-test-build-cache
       # - node/test:
