@@ -37,7 +37,7 @@ workflows:
   hw-ci-cd:
     jobs:
       - install-test-build-cache
-      - build-docker-image-with-orb:
+      - build-docker-image-only:
          requires:
            - install-test-build-cache
          filters:
