@@ -25,25 +25,7 @@ jobs:
       - run: echo "pushed docker image to registry"
 workflows:
   version: 2
-  hw-ci:
-    triggers:
-      - schedule:
-        filters:
-          branches:
-            ignore:
-              - master
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
-  hw-cd:
-    triggers:
-      - schedule:
-        filters:
-          branches:
-            only:
-              - master
+  hw-ci-cd:
     jobs:
       - build
       - test:
@@ -52,6 +34,12 @@ workflows:
       - build-docker-image:
           requires:
             - test
+          filters:
+            branches:
+              only: master
       - push-docker-image:
           requires:
             - build-docker-image
+          filters:
+            branches:
+              only: master
