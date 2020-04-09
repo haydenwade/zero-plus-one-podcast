@@ -7,11 +7,10 @@ jobs:
     executor: docker/docker
     steps:
       # - node/test
-      - node/with-cache:
-        steps:
-          - run: npm install
-          - run: npm test
-          - run: npm run build
+      - checkout
+      - run: npm install
+      - run: npm test
+      - run: npm run build
       - setup_remote_docker
       - docker/check
       - docker/build:
