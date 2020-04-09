@@ -1,21 +1,12 @@
 version: 2.1
 orbs:
   node: circleci/node@2.0.1
-  docker: circleci/docker@1.0.1
+  # docker: circleci/docker@1.0.1
 jobs:
-  install-and-test:
-    executor:
-      name: node/default
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm test
-  build:
-    - node/with-cache:
-      steps:
-        - run: npm run build
+  # build:
+  #   - node/with-cache:
+  #     steps:
+  #       - run: npm run build
   build-and-push-docker-image:
     machine: true
     steps:
@@ -25,13 +16,13 @@ workflows:
   version: 2
   hw-ci-cd:
     jobs:
-      - install-and-test
-      - build:
-        requires:
-          - install-and-test
-        filters:
-            branches:
-              only: master
+      - node/test
+      # - build:
+      #     requires:
+      #       - node/test
+      #     filters:
+      #       branches:
+      #         only: master
       - build-and-push-docker-image:
           requires:
             - build
