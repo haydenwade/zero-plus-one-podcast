@@ -3,18 +3,31 @@ orbs:
   node: circleci/node@2.0.1
   docker: circleci/docker@1.0.1
 jobs:
-  build-and-push-docker-image:
-    executor: docker/node
-    steps:
-      # - node/test
-      - checkout
-      - run: npm install
-      - run: npm test
-      - run: npm run build
-      - setup_remote_docker
-      - docker/check
-      - docker/build:
-          image: my_repo/orb-test
+  install-test-build:
+    - node/with-cache:
+      steps:
+        - run: npm install
+        - run: npm run test
+        - run: npm run build 
+  build-docker-image-only:
+    jobs:
+      - docker/publish:
+          cache_from: '$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest'
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          tag: latest
+          deploy: false
+  # build-and-push-docker-image:
+  #   executor: docker/docker
+  #   steps:
+  #     # - node/test
+  #     - checkout
+  #     - run: npm install
+  #     - run: npm test
+  #     - run: npm run build
+  #     - setup_remote_docker
+  #     - docker/check
+  #     - docker/build:
+  #         image: my_repo/orb-test
       # - docker/push:
       #     digest-path: /tmp/digest.txt
       #     image: my_repo/orb-test
@@ -25,11 +38,15 @@ workflows:
   version: 2
   hw-ci-cd:
     jobs:
+      - install-test-build
+      - build-docker-image-only:
+        requires:
+          - install-test-build
       # - node/test:
       #   filters:
       #     branches:
       #       ignore: master
-      - build-and-push-docker-image:
-        filters:
-          branches:
-            only: master
+      # - build-and-push-docker-image:
+      #   filters:
+      #     branches:
+      #       only: master
