@@ -18,7 +18,7 @@ jobs:
     steps:
       - run: echo "pushed docker image to registry"
 workflows:
-    version: 2
+  version: 2
   hw-ci:
     jobs:
       - build
