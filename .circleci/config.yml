@@ -11,7 +11,28 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
+  build-docker-image:
+    machine: true
+    steps:
+      - run: echo "built docker image"
+  push-docker-image:
+    machine: true
+    steps:
+      - run: echo "pushed docker image to registry"
 workflows:
-    build-and-test:
-      jobs:
-        - build-and-test
+  version: 2
+  hw-ci-cd:
+    jobs:
+      - build-and-test
+      - build-docker-image:
+          requires:
+            - build-and-test
+          filters:
+            branches:
+              only: master
+      - push-docker-image:
+          requires:
+            - build-docker-image
+          filters:
+            branches:
+              only: master
