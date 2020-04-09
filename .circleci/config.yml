@@ -26,24 +26,30 @@ jobs:
 workflows:
   version: 2
   hw-ci:
+    triggers:
+      - schedule:
+        filters:
+          branches:
+            ignore:
+              - master
     jobs:
       - build
       - test:
           requires:
             - build
   hw-cd:
+    triggers:
+      - schedule:
+        filters:
+          branches:
+            only:
+              - master
     jobs:
       - build
       - test:
           requires:
             - build
       - build-docker-image:
-          triggers:
-            - schedule:
-              filters:
-                branches:
-                  only:
-                    - master
           requires:
             - test
       - push-docker-image:
