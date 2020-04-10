@@ -1,0 +1,2 @@
+sut:
+    command: run_tests.sh
