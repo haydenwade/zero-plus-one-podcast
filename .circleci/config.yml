@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
   node: circleci/node@2.0.1
-  docker: circleci/docker@1.0.1
 jobs:
   install-test:
     executor:
@@ -10,58 +9,8 @@ jobs:
       - checkout
       - run: npm install
       - run: npm test
-  install-test-build:
-      executor:
-        name: node/default
-      steps:
-        - checkout
-        - run: npm install
-        - run: npm test
-        - run: npm run build
-  install-test-build-cache:
-    executor:
-      name: node/default
-    steps:
-      - checkout
-      - run: npm install
-      - run: npm test
-      - run: npm run build
-      - save_cache:
-          key: built-app-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - build
-            - Dockerfile
-  build-docker-image-only:
-    executor:
-      name: docker/docker
-    steps:
-      - restore_cache:
-          keys: built-app
-      - setup_remote_docker
-      - run: docker build . -t my-first-image
 workflows:
   version: 2
-  hw-ci-cd:
+  hw-ci:
     jobs:
-      - install-test:
-          filters:
-            branches:
-              ignore: master
-      - install-test-build-cache:
-          filters:
-            branches:
-              only: master
-      - build-docker-image-only:
-         requires:
-           - install-test-build-cache
-         filters:
-           branches:
-              only: master
-      # - node/test:
-      #   filters:
-      #     branches:
-      #       ignore: master
-      # - build-and-push-docker-image:
-      #   filters:
-      #     branches:
-      #       only: master
+      - install-test
