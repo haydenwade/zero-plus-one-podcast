@@ -20,3 +20,12 @@ body{
 .red {
   color: #f95c55
 }
+a:hover{
+  color: #f95c55
+}
+
+.copyright-footer{
+  color:#999999;
+  font-size: 12px;
+  padding-bottom: 30px;
+}
