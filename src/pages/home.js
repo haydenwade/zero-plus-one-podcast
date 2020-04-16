@@ -22,17 +22,17 @@ export default class HomePage extends React.Component {
                     <Col className="center">
                         <h1 className="red"><strong>ZERO + ONE</strong></h1>
                         <h2><strong>A PODCAST BY HAYDEN WADE</strong></h2>
-                        <hr/>
+                        <hr />
                     </Col>
                 </Row>
                 <Row>
                     <Col className="center">
-                    We strive to bring you the most valuable insights into becoming and being a successful software engineer. 
-                    Our host Hayden Wade has coded until his fingers were sore but most of all he enjoys mentoring aspiring engineers, speaking at Universities, 
-                    and petting alpacas in his spare time. In these episodes of the Zero Plus One Podcast we will cover everything from how to land your dream job, career advice, tech, 
-                    and hear extraordinary guests talk about their journey to success.
-                    <hr/>
-                </Col>
+                        We strive to bring you the most valuable insights into becoming and being a successful software engineer.
+                        Our host Hayden Wade has coded until his fingers were sore but most of all he enjoys mentoring aspiring engineers, speaking at Universities,
+                        and petting alpacas in his spare time. In these episodes of the Zero Plus One Podcast we will cover everything from how to land your dream job, career advice, tech,
+                        and hear extraordinary guests talk about their journey to success.
+                    <hr />
+                    </Col>
                 </Row>
                 <Row>
                     <Col className="center">
@@ -41,25 +41,35 @@ export default class HomePage extends React.Component {
                         <p>
                             Available on all major podcast platforms and you can also listen along below. All podcasts are recorded on video as well and those can be found on our <a className="red" href="https://www.youtube.com/channel/UCoFZsE7M5Bw_RK-7p3VRsnQ" target="_blank" rel="noopener noreferrer">YouTube</a> channel.
                         </p>
-                        <hr/>
+                        <hr />
                     </Col>
                 </Row>
                 <Row>
-                    <Col className="center">
-                        <div id="buzzsprout-large-player-987628"></div>
-                        <hr/>
+                    <Col xs={12} md={6} className="center">
+                        <img src="assets/google-home-clear.png" alt="Ok Google, play the Zero Plus One Podcast" width="100%" />
+                    </Col>
+                    <Col xs={12} md={6} className="d-flex align-items-center justify-content-center">
+                        <img src="assets/alexa-clear.png" alt="Alexa, play the Zero Plus One Podcast" width="100%" />
                     </Col>
                 </Row>
+                <hr/>
+                <Row>
+                    <Col className="center">
+                        <div id="buzzsprout-large-player-987628"></div>
+                        <hr />
+                    </Col>
+                </Row>
+                
                 <Row>
                     <Col className="center">
                         <p>
                             Be sure to follow us on social for behind the scenes and get notified when the next episode drops. Don't miss out!
                         </p>
                         <SocialLinks />
-                        <hr/>
+                        <hr />
                     </Col>
                 </Row>
-                <CopyrightFooter/>
+                <CopyrightFooter />
             </Container>
         );
     }
