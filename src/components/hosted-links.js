@@ -10,6 +10,7 @@ export default function HostedLinks(){
                     <PicLink id="google-podcast-link" src="assets/google-podcast-logo.png" height={50}  text="Listen on Google Podcast" href="https://podcasts.google.com?feed=aHR0cHM6Ly9mZWVkcy5idXp6c3Byb3V0LmNvbS85ODc2MjgucnNz"/>
                     <PicLink id="spotify-podcast-link" src="assets/spotify-logo.png" height={50}  text="Listen on Spotify" href="https://open.spotify.com/show/3cpIxXo4F5Mf6pf9hpfdCE?si=e_CCa3oEQEuiq_TZL-17CQ"/>
                     <PicLink id="iheartradio-podcast-link" src="assets/iheartradio-logo.png" height={50} text="Listen on iHeartRadio" href="https://www.iheart.com/podcast/269-zero-plus-one-podcast-61503168/"/>
+                    <PicLink id="amazon-music-link" src="assets/amazon-music-logo.png" height={50} text="Listen on Amazon Music" href="https://music.amazon.com/podcasts/2a6461e8-d128-485e-b9ed-945a48e0d7da/Zero-Plus-One-Podcast"/>
                     <br/>
                     <PicLink id="castro-podcast-link" src="assets/castro-logo.svg" height={50}  text="Listen on Castro Podcast" href="https://castro.fm/podcast/6bcb3328-c70d-40ac-8f81-3091f49a81b4"/>
                     <PicLink id="buzzsprout-podcast-link" src="assets/buzzsproutlogo.png" height={50} text="Listen on Buzzsprout" href="https://www.buzzsprout.com/987628"/>
