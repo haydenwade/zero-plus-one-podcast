@@ -22,7 +22,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v1
         with:
-          images: haydenwade/hayden-wade-dot-com
+          images: haydenwade/zero-plus-one-podcast
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
