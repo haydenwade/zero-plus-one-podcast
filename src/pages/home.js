@@ -8,7 +8,7 @@ export default class HomePage extends React.Component {
     componentDidMount() {
         const script = document.createElement("script");
 
-        script.src = "https://www.buzzsprout.com/987628.js?container_id=buzzsprout-large-player-987628&player=large&order=date";
+        script.src = "https://www.buzzsprout.com/987628.js?container_id=buzzsprout-large-player-987628&player=large";
         script.type = "text/javascript";
         script.charset = "utf-8";
         script.async = true;
