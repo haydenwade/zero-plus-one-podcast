@@ -28,12 +28,25 @@ export default class HomePage extends React.Component {
                 <Row>
                     <Col className="center">
                         We strive to bring you the most valuable insights into becoming and being a successful software engineer.
-                        Our host Hayden Wade has coded until his fingers were sore but most of all he enjoys mentoring aspiring engineers, speaking at Universities,
+                        Our host <a className="red" href="https://www.haydenwade.com" target="_blank" rel="noopener noreferrer">Hayden Wade</a> has coded until his fingers were sore but most of all he enjoys mentoring aspiring engineers, speaking at Universities,
                         and petting alpacas in his spare time. In these episodes of the Zero Plus One Podcast we will cover everything from how to land your dream job, career advice, tech,
                         and hear extraordinary guests talk about their journey to success.
                     <hr />
                     </Col>
                 </Row>
+                <Row>
+                    <Col className="center">
+                        <h3>Career Coaching And More!</h3>
+                        Head on over to <a className="red" href="https://www.haydenwade.com" target="_blank" rel="noopener noreferrer">haydenwade.com</a> to get the help you need to level up in life and in your career!
+                        <ul className="no-bullets">
+                            <li><a className="red" href="https://www.haydenwade.com/services/career-coaching" target="_blank" rel="noopener noreferrer">Career Coaching</a></li>
+                            <li><a className="red" href="https://www.haydenwade.com/services/resume-review" target="_blank" rel="noopener noreferrer">Resume Review</a></li>
+                            <li><a className="red" href="https://www.haydenwade.com/services/salary-negotiation" target="_blank" rel="noopener noreferrer">Salary Negotiation</a></li>
+                            <li><a className="red" href="https://www.haydenwade.com/services/consulting" target="_blank" rel="noopener noreferrer">Consulting</a></li>
+                        </ul>
+                    </Col>
+                </Row>
+                <hr/>
                 <Row>
                     <Col className="center">
                         <h3>Where to find the podcast?</h3>
@@ -59,7 +72,6 @@ export default class HomePage extends React.Component {
                         <hr />
                     </Col>
                 </Row>
-                
                 <Row>
                     <Col className="center">
                         <p>
