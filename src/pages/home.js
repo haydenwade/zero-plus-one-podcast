@@ -36,6 +36,19 @@ export default class HomePage extends React.Component {
                 </Row>
                 <Row>
                     <Col className="center">
+                        <h3>Career Coaching And More!</h3>
+                        Head on over to <a className="red" href="https://www.haydenwade.com" target="_blank" rel="noopener noreferrer">haydenwade.com</a> to get the help you need to level up in life and in your career!
+                        <ul className="no-bullets">
+                            <li><a className="red" href="https://www.haydenwade.com/services/career-coaching" target="_blank" rel="noopener noreferrer">Career Coaching</a></li>
+                            <li><a className="red" href="https://www.haydenwade.com/services/resume-review" target="_blank" rel="noopener noreferrer">Resume Review</a></li>
+                            <li><a className="red" href="https://www.haydenwade.com/services/salary-negotiation" target="_blank" rel="noopener noreferrer">Salary Negotiation</a></li>
+                            <li><a className="red" href="https://www.haydenwade.com/services/consulting" target="_blank" rel="noopener noreferrer">Consulting</a></li>
+                        </ul>
+                    </Col>
+                </Row>
+                <hr/>
+                <Row>
+                    <Col className="center">
                         <h3>Where to find the podcast?</h3>
                         <HostedLinks />
                         <p>
@@ -59,19 +72,6 @@ export default class HomePage extends React.Component {
                         <hr />
                     </Col>
                 </Row>
-                <Row>
-                    <Col className="center">
-                        <h3>Career Coaching And More!</h3>
-                        Head on over to <a className="red" href="https://www.haydenwade.com" target="_blank" rel="noopener noreferrer">haydenwade.com</a> to get the help you need to level up in life and in your career!
-                        <ul className="no-bullets">
-                            <li><a className="red" href="https://www.haydenwade.com/services/career-coaching" target="_blank" rel="noopener noreferrer">Career Coaching</a></li>
-                            <li><a className="red" href="https://www.haydenwade.com/services/resume-review" target="_blank" rel="noopener noreferrer">Resume Review</a></li>
-                            <li><a className="red" href="https://www.haydenwade.com/services/salary-negotiation" target="_blank" rel="noopener noreferrer">Salary Negotiation</a></li>
-                            <li><a className="red" href="https://www.haydenwade.com/services/consulting" target="_blank" rel="noopener noreferrer">Consulting</a></li>
-                        </ul>
-                    </Col>
-                </Row>
-                <hr/>
                 <Row>
                     <Col className="center">
                         <p>
